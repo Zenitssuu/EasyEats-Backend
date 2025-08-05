@@ -211,14 +211,14 @@ export const stripeWebhookHandler = async (req, res) => {
   let event;
   try {
     const sign = req.headers["stripe-signature"];
-    console.log("📝 Stripe signature present:", !!sign);
+    // console.log("📝 Stripe signature present:", !!sign);
 
     event = STRIPE.webhooks.constructEvent(
       req.body,
       sign,
       STRIPE_ENDPOINT_SECRET
     );
-    console.log("✅ Stripe webhook event received:", event.type);
+    // console.log("✅ Stripe webhook event received:", event.type);
   } catch (error) {
     console.log("error here");
     console.log("❌ Webhook signature verification failed:", error.message);
@@ -227,14 +227,14 @@ export const stripeWebhookHandler = async (req, res) => {
   // console.log("going inside");
   // Listen for session completed event
   if (event.type === "checkout.session.completed") {
-    console.log("Processing checkout.session.completed", event.data);
+    // console.log("Processing checkout.session.completed", event.data);
     const session = event.data.object;
     const paymentIntent = await STRIPE.paymentIntents.retrieve(
       session.payment_intent
     );
     // const receiptUrl = paymentIntent.charges.data[0].receipt_url;
 
-    console.log("Receipt URL:", paymentIntent);
+    // console.log("Receipt URL:", paymentIntent);
 
     try {
       // console.log("📊 Session data:", session);
@@ -255,8 +255,8 @@ export const stripeWebhookHandler = async (req, res) => {
       const restaurant = await Restaurant.findById(restaurantId);
       const user = await User.findById(userId);
 
-      console.log("👤 User found:", !!user);
-      console.log("🏪 Restaurant found:", !!restaurant);
+      // console.log("👤 User found:", !!user);
+      // console.log("🏪 Restaurant found:", !!restaurant);
 
       if (!restaurant || !user) {
         console.log("❌ Invalid restaurant or user");

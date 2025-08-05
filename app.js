@@ -12,6 +12,9 @@ import {
   checkDistanceRoute,
 } from "./routes/routes.js";
 import redisClient from "./services/redisClient.js";
+import { authLimiter, generalLimiter } from "./services/rateLimiter.js";
+
+console.log("ENV CHECK:", process.env.NODE_ENV);
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -25,6 +28,8 @@ const PORT = process.env.PORT;
 
 //middlewares
 // app.use(express.urlencoded({ extended: true }));
+app.use(generalLimiter);
+app.use("/api/v1/user", authLimiter);
 app.use(
   cors({
     origin: true,
