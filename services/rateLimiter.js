@@ -8,6 +8,6 @@ export const generalLimiter = rateLimit({
 
 export const authLimiter = rateLimit({
   windowMs: 5 * 60 * 1000, 
-  max: 5,
+  max: 100,
   message: "Too many login/signup attempts. Try again later.",
 });
