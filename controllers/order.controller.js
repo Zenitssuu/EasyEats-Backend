@@ -110,7 +110,7 @@ const getOrderConfirmationHtml = (userName, orderId, totalAmount) => {
                                             <table border="0" cellspacing="0" cellpadding="0">
                                                 <tr>
                                                     <td align="center" style="border-radius: 8px;" bgcolor="#FF6347">
-                                                        <a href="https://food-delivery-frontend-831b.onrender.com/order-status" target="_blank" style="display: inline-block; font-size: 16px; font-weight: bold; color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px;">Track Your Order</a>
+                                                        <a href="${FRONTEND_URL}/orders-status" target="_blank" style="display: inline-block; font-size: 16px; font-weight: bold; color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px;">Track Your Order</a>
                                                     </td>
                                                 </tr>
                                             </table>
