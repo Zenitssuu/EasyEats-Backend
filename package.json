@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "packageManager": "bun@1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,6 +23,11 @@
   },
   "homepage": "https://github.com/Zenitssuu/EasyEats-Backend#readme",
   "devDependencies": {
-    "dbmate": "^2.36.0"
+    "dbmate": "^2.36.0",
+    "drizzle-kit": "^0.31.11"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.4",
+    "pg": "^8.23.1"
   }
 }

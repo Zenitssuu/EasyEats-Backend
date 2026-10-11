@@ -27,5 +27,5 @@ CREATE TABLE IF NOT EXISTS user_address (
 );
 
 --migrate:down
-DROP TABLE IF EXISTS users
-DROP TABLE IF EXISTS user_address
+DROP TABLE IF EXISTS user_address;
+DROP TABLE IF EXISTS users;
