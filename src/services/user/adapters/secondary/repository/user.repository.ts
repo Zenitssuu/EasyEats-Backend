@@ -1,6 +1,6 @@
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import { eq } from "drizzle-orm";
-import type { CreateUserInput, User, UpdateUserInput } from "../../../core/domain/user.domain";
+import type { CreateUserInput, User, UserUpdateData } from "../../../core/domain/user.domain";
 import { users } from "../postgres/user.schema";
 import type * as schema from "../postgres/user.schema"
 import type {UserPersistencePort} from "../../../application/port/outbound/user.port"
@@ -42,6 +42,16 @@ export class DrizzleUserRepository implements UserPersistencePort{
         return row ? this.toDomainObject(row) : null;
     }
 
+    async findCredentialsById(id: string): Promise<{ passwordHash: string | null } | null> {
+        const [row] = await this.db
+            .select({ passwordHash: users.password })
+            .from(users)
+            .where(eq(users.id, id))
+            .limit(1);
+
+        return row ?? null;
+    }
+
     async create(input: CreateUserInput, editorId: string | null = null): Promise<User> {
 
         const [row] = await this.db
@@ -67,7 +77,7 @@ export class DrizzleUserRepository implements UserPersistencePort{
         return this.toDomainObject(row);
     }
 
-    async update(id: string, input: UpdateUserInput, editorId: string): Promise<User | null> {
+    async update(id: string, input: UserUpdateData, editorId: string): Promise<User | null> {
         const changes: Partial<typeof users.$inferInsert> = {};
         if (input.name !== undefined) changes.name = input.name;
         if (input.password !== undefined) changes.password = input.password;

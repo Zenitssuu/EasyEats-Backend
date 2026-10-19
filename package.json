@@ -6,6 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit",
+    "dev": "bun --watch src/services/user/main.ts",
+    "start": "bun src/services/user/main.ts",
     "db:status": "dbmate --env-file .env --migrations-dir db/migration --no-dump-schema status",
     "db:up": "dbmate --env-file .env --migrations-dir db/migration --no-dump-schema up",
     "db:new": "dbmate --env-file .env --migrations-dir db/migration new"
@@ -23,11 +26,16 @@
   },
   "homepage": "https://github.com/Zenitssuu/EasyEats-Backend#readme",
   "devDependencies": {
+    "@types/bun": "^1.4.3",
+    "@types/pg": "^8.23.1",
     "dbmate": "^2.36.0",
-    "drizzle-kit": "^0.31.11"
+    "drizzle-kit": "^0.31.11",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
+    "argon2": "^0.45.1",
     "drizzle-orm": "^0.45.4",
+    "elysia": "^1.4.30",
     "pg": "^8.23.1"
   }
 }
